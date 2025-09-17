@@ -203,8 +203,8 @@ class ProfileUpdateForm(forms.ModelForm):
     )
     parther_name = forms.CharField(
         required=True,
-        max_length=50,
-        label="Фамилия и имя, пригласившего вас, партнёра",
+        max_length=60,
+        label="ФИО",
         validators=[md.RegexValidator(r'^[а-яА-ЯёЁ\s]+$', 'ФИО может содержать только русские буквы и пробелы')],
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
@@ -294,7 +294,6 @@ class ProfileUpdateForm(forms.ModelForm):
 
         if self.instance and self.instance.document_photo:
             self.fields['document_photo'].required = True
-
 
     def clean(self):
         cleaned_data = super().clean()
